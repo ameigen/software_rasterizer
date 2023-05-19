@@ -7,27 +7,35 @@ void RenderingManager::_render(Model<T>)
 }
 
 template <typename T>    
-void RenderingManager::_drawTriangle(Triangle<T> tri)
+void RenderingManager::_drawTriangle(Triangle<T> tri,
+                                     Vector3<unsigned> color)
 {
     _logger->log(DEBUG, "Rendering triangle: ", tri);
     _drawLine(Vector2<T>(tri[0]), (tri[0]),
-              Vector2<T>(tri[1], tri[1]));
+              Vector2<T>(tri[1], tri[1]),
+              color);
     _drawLine(Vector2<T>(tri[1]), (tri[1]),
-              Vector2<T>(tri[2], tri[2]));
+              Vector2<T>(tri[2], tri[2]),
+              color);
     _drawLine(Vector2<T>(tri[2]), (tri[2]),
-              Vector2<T>(tri[3], tri[3]));
+              Vector2<T>(tri[3], tri[3]),
+              color);
 }
 
 template <typename T>    
-void RenderingManager::_drawTriangle(Vector3<T> v)
+void RenderingManager::_drawTriangle(Vector3<T> v,
+                                     Vector3<unsigned> color)
 {
     _logger->log(DEBUG, "Rendering triangle: ", v);
     _drawLine(Vector2<T>(v[0], v[1]),
-              Vector2<T>(v[1], v[2]));
+              Vector2<T>(v[1], v[2]),
+              color);
     _drawLine(Vector2<T>(v[1], v[2]),
-              Vector2<T>(v[2], v[0]));
+              Vector2<T>(v[2], v[0]),
+              color);
     _drawLine(Vector2<T>(v[2], v[0]),
-              Vector2<T>(v[0], v[1]));
+              Vector2<T>(v[0], v[1]),
+              color);
 }
 
 /*
@@ -39,7 +47,8 @@ void RenderingManager::_drawTriangle(Vector3<T> v)
  */
 template <typename T>    
 void RenderingManager::_drawLine(Vector2<T> a,
-                                 Vector2<T> b)
+                                 Vector2<T> b,
+                                 Vector3<unsigned> color)
 {
     // Calculate the absolute difference between the start and end points
     int absoluteXDifference = abs(b[0] - a[0]);
@@ -56,7 +65,7 @@ void RenderingManager::_drawLine(Vector2<T> a,
     while (true)
     {
         // Draw a pixel at current position
-        _drawPixel(a[0], a[1], Vector3<unsigned>(0, 0, 255));
+        _drawPixel(a[0], a[1], color);
 
         // If we;ve reached the end point, break out of the loop
         if (a[0] == b[0] && a[1] == b[1])
@@ -102,7 +111,9 @@ void RenderingManager::clearSurface(Vector3<unsigned> rgb)
     SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, rgb[0], rgb[1], rgb[2]));
     Vector3<float> a(0, 50, 100);
     a = _camera->pointToCameraSpace(a);
-    _drawTriangle(Vector3<int>(0, 50, 100));  
+    _drawTriangle(Vector3<int>(0, 50, 100), Vector3<unsigned>(122, 122, 0));  
+    _drawTriangle(Vector3<int>(50, 230, 500));  
+
 }
 
 SDL_Texture* RenderingManager::getTexture()

@@ -26,13 +26,13 @@ class RenderingManager
         void _render(Model<T>);
 
         template <typename T>    
-        void _drawTriangle(Triangle<T> tri);
+        void _drawTriangle(Triangle<T> tri, Vector3<unsigned> color = Vector3<unsigned>(0, 255, 0));
 
         template <typename T>    
-        void _drawTriangle(Vector3<T> v);
+        void _drawTriangle(Vector3<T> v, Vector3<unsigned> color = Vector3<unsigned>(0, 255, 0));
 
         template <typename T>    
-        void _drawLine(Vector2<T> a, Vector2<T> b);
+        void _drawLine(Vector2<T> a, Vector2<T> b, Vector3<unsigned> color);
 
         void _drawPixel(int x,
                         int y,
