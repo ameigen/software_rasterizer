@@ -8,6 +8,7 @@
 #include "InputManager.h"
 #include "RenderingManager.h"
 #include "Camera.h"
+#include "Logger.h"
 
 class Application {
 public:
@@ -38,4 +39,5 @@ private:
     Camera _camera;
     InputManager _inputMangager;
     RenderingManager _renderingManager;
+    Logger _logger;
 };

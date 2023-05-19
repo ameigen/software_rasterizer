@@ -15,20 +15,3 @@ Eigen::Matrix4f Camera::_lookingAt()
 
     return _viewMatrix;
 }
-
-template <typename T>
-Vector3<T> Camera::pointToCameraSpace(Vector3<T> &v)
-{
-    Eigen::Matrix4f _viewMatrix = _lookingAt();
-    Vector4<T> _result;
-
-    std::cout << _viewMatrix.rows() << ' ' << _viewMatrix.cols() << '\n';
-    for (int i = 0; i < _viewMatrix.rows(); i++)
-    {
-        for (int j = 0; j < _viewMatrix.cols(); j++)
-        {
-            _result[i] += _viewMatrix(i, j) * v[j];
-        }
-    }
-    return _result.toVec3();
-}

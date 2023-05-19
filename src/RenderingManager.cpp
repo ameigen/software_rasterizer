@@ -9,6 +9,7 @@ void RenderingManager::_render(Model<T>)
 template <typename T>    
 void RenderingManager::_drawTriangle(Triangle<T> tri)
 {
+    _logger->log(DEBUG, "Rendering triangle: ", tri);
     _drawLine(Vector2<T>(tri[0]), (tri[0]),
               Vector2<T>(tri[1], tri[1]));
     _drawLine(Vector2<T>(tri[1]), (tri[1]),
@@ -20,6 +21,7 @@ void RenderingManager::_drawTriangle(Triangle<T> tri)
 template <typename T>    
 void RenderingManager::_drawTriangle(Vector3<T> v)
 {
+    _logger->log(DEBUG, "Rendering triangle: ", v);
     _drawLine(Vector2<T>(v[0], v[1]),
               Vector2<T>(v[1], v[2]));
     _drawLine(Vector2<T>(v[1], v[2]),
@@ -100,7 +102,6 @@ void RenderingManager::clearSurface(Vector3<unsigned> rgb)
     SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, rgb[0], rgb[1], rgb[2]));
     Vector3<float> a(0, 50, 100);
     a = _camera->pointToCameraSpace(a);
-    std::cout << a << '\n' ;
     _drawTriangle(Vector3<int>(0, 50, 100));  
 }
 

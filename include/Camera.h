@@ -25,6 +25,20 @@ class Camera
                  _up(up) {}
 
         template <typename T>
-        Vector3<T> pointToCameraSpace(Vector3<T> &v);
+        Vector3<T> pointToCameraSpace(Vector3<T> &v)
+        {
+            Eigen::Matrix4f _viewMatrix = _lookingAt();
+            Vector4<float> _result;
+            Vector4<float> _vTo4(v);
 
+            for (int i = 0; i < _viewMatrix.rows(); i++)
+            {
+                for (int j = 0; j < _viewMatrix.cols(); j++)
+                {
+                    _result[i] += _viewMatrix(i, j) * _vTo4[j];
+                }
+            }
+            Vector3<float> _result3 = _result.toVec3();
+            return _result3;
+        }
 };

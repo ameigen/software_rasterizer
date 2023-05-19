@@ -5,16 +5,20 @@ void InputManager::handleEvent(const SDL_Event& event)
     if (event.type == SDL_KEYDOWN) 
     {
         m_keyStates[event.key.keysym.scancode] = true;
-    } else if (event.type == SDL_KEYUP) 
+    } 
+    else if (event.type == SDL_KEYUP) 
     {
         m_keyStates[event.key.keysym.scancode] = false;
-    } else if (event.type == SDL_MOUSEBUTTONDOWN) 
+    } 
+    else if (event.type == SDL_MOUSEBUTTONDOWN) 
     {
         m_mouseButtonStates[event.button.button] = true;
-    } else if (event.type == SDL_MOUSEBUTTONUP) 
+    } 
+    else if (event.type == SDL_MOUSEBUTTONUP) 
     {
         m_mouseButtonStates[event.button.button] = false;
-    } else if (event.type == SDL_MOUSEMOTION) 
+    } 
+    else if (event.type == SDL_MOUSEMOTION) 
     {
         m_mouseX = event.motion.x;
         m_mouseY = event.motion.y;

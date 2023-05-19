@@ -4,6 +4,8 @@
 #include <array>
 #include <iostream>
 
+#include "Logger.h"
+
 class InputManager {
 public:
     void handleEvent(const SDL_Event& event);

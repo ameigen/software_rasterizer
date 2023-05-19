@@ -162,10 +162,11 @@ struct Vector4
         return v[3];
     }
 
-    Vector3<T> toVec3() const
+    Vector3<T> toVec3()
     {
         if (v[3] != 1 && v[3] != 0 )
             return Vector3<T>(v[0] /= v[3], v[1] /= v[3], v[2] /= v[3]);
+        return Vector3<T>();
     }
 
     T& operator[](size_t index)

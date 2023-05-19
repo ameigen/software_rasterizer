@@ -4,20 +4,23 @@
 
 #include "Geometry.h"
 #include "Camera.h"
-
+#include "Logger.h"
 class RenderingManager
 {
     public:
         RenderingManager(SDL_Renderer *renderer = nullptr,
                          SDL_Surface *surface   = nullptr,
-                         Camera *camera)
+                         Camera *camera         = nullptr,
+                         Logger *logger         = nullptr)
             :   _renderer{renderer},
                 _surface(surface),
-                _camera(camera) {}
+                _camera(camera),
+                _logger(logger) {}
     private:
         SDL_Renderer *_renderer;
         SDL_Surface *_surface;
-        Camera* _camera;
+        Camera *_camera;
+        Logger *_logger;
         
         template <typename T>    
         void _render(Model<T>);
