@@ -24,7 +24,8 @@ class Logger
         ~Logger(){};
 
         template <class... Args>
-        void log(LogLevel logLevel, Args... args)
+        void log(LogLevel logLevel,
+                 Args... args)
         {
             bool canLog = false;
             auto chronoTime = std::chrono::system_clock::now();
@@ -69,7 +70,9 @@ class Logger
             _logLevel = level;
         }
 
-        void setLogColors(LogLevel logLevel, LogColors foreground, LogColors background)
+        void setLogColors(LogLevel logLevel, 
+                          LogColors foreground,
+                          LogColors background)
         {
             switch(logLevel)
             {

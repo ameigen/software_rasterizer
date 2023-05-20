@@ -12,9 +12,9 @@ void RenderingManager::clearSurface(Vector3<unsigned> rgb)
     Vector3<float> a(0, 50, 100);
     a = _camera->pointToCameraSpace(a);
     //_drawTriangle(Vector3<int>(0, 50, 100), Vector3<unsigned>(122, 122, 0));  
-    _drawLine(Vector2<int>(-100, -100), Vector2<int>(-100, 100), Colors::RED);
-    _drawLine(Vector2<int>(-100, 100), Vector2<int>(100, 100), Colors::GREEN);
-    _drawLine(Vector2<int>(100, 100), Vector2<int>(100, -100), Colors::BLUE);
+    _drawLine(Vector2<int>(-100, -100), Vector2<int>(-100, 100), Colors::CYAN);
+    _drawLine(Vector2<int>(-100, 100), Vector2<int>(100, 100), Colors::YELLOW);
+    _drawLine(Vector2<int>(100, 100), Vector2<int>(100, -100), Colors::PURPLE);
     _drawLine(Vector2<int>(100, -100), Vector2<int>(-100, -100), Colors::PINK);
     _drawPixel(0, 0, Colors::BLUE);
 }

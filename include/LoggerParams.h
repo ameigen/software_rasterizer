@@ -33,6 +33,6 @@ struct TextColor
 {
     public:
         TextColor(LogColors foreground, LogColors background)
-        { this->foreground = foreground; this->background = background; }
+                : foreground(foreground), background(background) {}
         LogColors foreground, background;
 };
