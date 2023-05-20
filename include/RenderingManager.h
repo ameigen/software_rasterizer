@@ -5,6 +5,8 @@
 #include "Geometry.h"
 #include "Camera.h"
 #include "Logger.h"
+#include "Color.h"
+
 class RenderingManager
 {
     public:
@@ -21,7 +23,9 @@ class RenderingManager
         SDL_Surface *_surface;
         Camera *_camera;
         Logger *_logger;
-        
+        std::pair<int, int> _screenSize{0, 0};
+
+        std::pair<int, int> _toScreenSpace(int &x, int &y);
         template <typename T>    
         void _render(Model<T>);
 
@@ -42,5 +46,6 @@ class RenderingManager
         void renderModels(std::vector<Model<T>> &models);
 
         void clearSurface(Vector3<unsigned> rgb);
+        void setScreenSize(int &screenWidth, int &screenHeight);
         SDL_Texture *getTexture();
 };

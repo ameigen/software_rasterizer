@@ -32,28 +32,28 @@ class Logger
             switch(logLevel)
             {
                 case INFO:
-                    if (_logLevel >= 1)
+                    if (_logLevel >= INFO)
                     {
                         std::cout << "\x1b[" << _infoColor.foreground << "m\x1b[" <<  _infoColor.background << 'm' << "INFO\t| [" <<  strtok(std::ctime(&time), "\n") << "] ";
                         canLog = true;
                     }
                     break;
                 case DEBUG:
-                    if (_logLevel >= 2)
+                    if (_logLevel >= DEBUG)
                     {
                         std::cout << "\x1b[" << _debugColor.foreground << "m\x1b[" << _debugColor.background << 'm' << "DEBUG\t| ["  << strtok(std::ctime(&time), "\n") << "] ";
                         canLog = true;
                     }
                     break;
                 case WARNING:
-                    if (_logLevel >= 3)
+                    if (_logLevel >= WARNING)
                     {
                         std::cout << "\x1b[" << _warningColor.foreground << "m\x1b[" << _warningColor.background << 'm' << "WARNING\t| ["  << strtok(std::ctime(&time), "\n") << "] ";
                         canLog = true;
                     }
                     break;
                 case ERROR:
-                    if (_logLevel >= 4)
+                    if (_logLevel >= ERROR)
                     {
                         std::cout << "\x1b[" << _errorColor.foreground << "m\x1b[" << _errorColor.background << 'm' << "ERROR\t| ["  << strtok(std::ctime(&time), "\n") << "] ";
                         canLog = true;

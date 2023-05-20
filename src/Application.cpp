@@ -8,7 +8,7 @@ Application::Application(const std::string& windowTitle, int windowWidth, int wi
         _windowWidth(windowWidth),
         _windowHeight(windowHeight)
         {
-            _logger.log(INFO, "Creating Application with following parameters. WindowTitle:", windowTitle, " WindowSize:(",windowWidth,'x',windowHeight,')');
+            _logger.log(INFO, "Creating Application with following parameters. WindowTitle: ", windowTitle, " WindowSize: (",windowWidth,'x',windowHeight,')');
             m_running = initSDL();
         }
 
@@ -55,7 +55,8 @@ bool Application::initSDL()
     }
 
     _renderingManager = RenderingManager(_renderer, _surface, &_camera, &_logger);
-    _logger.setLogLevel(ERROR);
+    _renderingManager.setScreenSize(_windowWidth, _windowHeight);
+    _logger.setLogLevel(DEBUG);
     return true;
 }
 

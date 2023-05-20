@@ -41,4 +41,10 @@ class Camera
             Vector3<float> _result3 = _result.toVec3();
             return _result3;
         }
+
+        /* 
+            TODO: Impliment Vector2<T> cameraSpaceToCanvas(Vector3<T> &v)
+                Takes the returned Vector3<T> of pointToCameraSpace and converts it to an
+                x,y pair that can be drawn to the screen.
+        */
 };

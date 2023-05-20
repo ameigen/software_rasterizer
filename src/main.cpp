@@ -1,11 +1,6 @@
 #include "Application.h"
 #include "Cube.h"
 
-/*
-    Implement Line Drawing
-    Implement Triangle Drawing
-    Implement 
-*/
 int main()
 {
     Model cube(cubeTris);

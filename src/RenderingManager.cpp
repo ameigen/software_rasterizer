@@ -1,5 +1,50 @@
 #include "RenderingManager.h"
         
+template <typename T>
+void RenderingManager::renderModels(std::vector<Model<T>> &models)
+{
+    ;
+}
+
+void RenderingManager::clearSurface(Vector3<unsigned> rgb)
+{
+    SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, rgb[0], rgb[1], rgb[2]));
+    Vector3<float> a(0, 50, 100);
+    a = _camera->pointToCameraSpace(a);
+    //_drawTriangle(Vector3<int>(0, 50, 100), Vector3<unsigned>(122, 122, 0));  
+    _drawLine(Vector2<int>(-100, -100), Vector2<int>(-100, 100), Colors::RED);
+    _drawLine(Vector2<int>(-100, 100), Vector2<int>(100, 100), Colors::GREEN);
+    _drawLine(Vector2<int>(100, 100), Vector2<int>(100, -100), Colors::BLUE);
+    _drawLine(Vector2<int>(100, -100), Vector2<int>(-100, -100), Colors::PINK);
+    _drawPixel(0, 0, Colors::BLUE);
+}
+
+SDL_Texture* RenderingManager::getTexture()
+{
+    return SDL_CreateTextureFromSurface(_renderer, _surface);
+}
+
+void RenderingManager::setScreenSize(int &screenWidth, int &screenHeight)
+{
+    _screenSize = std::pair<int, int>{screenWidth, screenHeight};
+}
+
+void RenderingManager::_drawPixel(int x,
+                                  int y,
+                                  Vector3<unsigned> color)
+{
+    std::pair<int, int> _screenSpace = _toScreenSpace(x, y);
+    Uint32 *_pixels = static_cast<Uint32*>(_surface->pixels);
+    _pixels[_screenSpace.second * _surface->w + _screenSpace.first] = SDL_MapRGB(_surface->format, color[0], color[1], color[2]);
+    _logger->log(DEBUG, "Painting pixel at canvas position (", _screenSpace.first, ',', _screenSpace.second, ") and centered (" , x, ',', y, ')');
+}
+
+std::pair<int, int> RenderingManager::_toScreenSpace(int &x, int &y)
+{
+    int _screenSpaceX = x + _screenSize.first / 2,
+        _screenSpaceY = _screenSize.second / 2 - y;
+    return std::pair<int, int>{_screenSpaceX, _screenSpaceY};
+}
 template <typename T>    
 void RenderingManager::_render(Model<T>)
 {
@@ -90,33 +135,4 @@ void RenderingManager::_drawLine(Vector2<T> a,
             a[1] += yStepValue;
         }
     }
-}
-
-template <typename T>
-void RenderingManager::renderModels(std::vector<Model<T>> &models)
-{
-    ;
-}
-
-void RenderingManager::_drawPixel(int x,
-                                  int y,
-                                  Vector3<unsigned> color)
-{
-    Uint32 *_pixels = static_cast<Uint32*>(_surface->pixels);
-    _pixels[y * _surface->w + x] = SDL_MapRGB(_surface->format, color[0], color[1], color[2]);
-}
-
-void RenderingManager::clearSurface(Vector3<unsigned> rgb)
-{
-    SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, rgb[0], rgb[1], rgb[2]));
-    Vector3<float> a(0, 50, 100);
-    a = _camera->pointToCameraSpace(a);
-    _drawTriangle(Vector3<int>(0, 50, 100), Vector3<unsigned>(122, 122, 0));  
-    _drawTriangle(Vector3<int>(50, 230, 500));  
-
-}
-
-SDL_Texture* RenderingManager::getTexture()
-{
-    return SDL_CreateTextureFromSurface(_renderer, _surface);
 }
